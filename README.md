@@ -2,6 +2,12 @@
 
 This is a way to tap into the React lifecycle methods without writing classes. This is useful if you are using a Flux or Redux library to manage your state, but you still need to access lifecycle methods.
 
+## Installation
+
+React Functional Lifecycle has a peerDependency of React 14 or greater. Otherwise, installing it is as easy as:
+
+`npm install react-functional-lifecycle --save`
+
 ## API
 
 React Functional Lifecycle is a function that takes your functional component as the first argument and an object of your lifecycle methods as the second argument and returns a new component. For example:
