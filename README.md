@@ -23,11 +23,11 @@ function YourReactComponent (props) {
 
 export default functional(YourReactComponent, {
 
-    componentWillMount (props) {
+    componentWillMount: (props) => {
         // do something..
     },
 
-    shouldComponentUpdate (props, nextProps) {
+    shouldComponentUpdate: (props, nextProps) => {
         // do something...
     }
 
