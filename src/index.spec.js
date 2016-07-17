@@ -10,15 +10,15 @@ function TestComponent (props) {
         <div>
             {props.greeting} World!
         </div>
-    )
+    );
 }
 
 const FunctionalComponent = functional(TestComponent, {});
 
 function setup (props) {
-    const renderer = TestUtils.createRenderer()
-    renderer.render(<FunctionalComponent {...props} />)
-    const output = renderer.getRenderOutput()
+    const renderer = TestUtils.createRenderer();
+    renderer.render(<FunctionalComponent greeting={props.greeting} />);
+    const output = renderer.getRenderOutput();
 
     return {
         props,

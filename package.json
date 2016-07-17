@@ -4,9 +4,12 @@
   "description": "Access lifecycle methods without a class or a component state",
   "main": "lib/index.js",
   "scripts": {
+    "eslint": "node_modules/.bin/eslint ./src/*.js",
+    "flow": "node_modules/.bin/flow ./src",
+    "mocha": "mocha src/**/*.spec.js --compilers js:babel-core/register",
     "babel": "babel src -d lib",
-    "test": "mocha src/**/*.spec.js --compilers js:babel-core/register",
-    "prepublish": "npm test; npm run babel"
+    "test": "npm run flow; npm run mocha",
+    "prepublish": "npm run test; npm run babel"
   },
   "repository": {
     "type": "git",
@@ -24,11 +27,15 @@
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.2",
     "babel-plugin-transform-flow-comments": "^6.8.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^3.1.0",
+    "eslint-plugin-react": "^5.2.2",
     "expect": "^1.20.2",
+    "flow": "^0.2.3",
     "mocha": "^2.5.3",
     "react": "^15.2.1",
     "react-addons-test-utils": "^15.2.1"

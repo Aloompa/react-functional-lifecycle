@@ -2,49 +2,51 @@
 
 import React from 'react';
 
-const functional = (render: Function, lifecycleMethods: Object = {}) => {
+const functional = (render: Function, lifecycleMethods: Object = {}): Function => {
 
     class Component extends React.Component {
 
         componentWillMount () {
             if (lifecycleMethods.componentWillMount) {
-                lifecycleMethods.componentWillMount(this.props, this);
+                return lifecycleMethods.componentWillMount(this.props, this);
             }
         }
 
         componentDidMount () {
             if (lifecycleMethods.componentDidMount) {
-                lifecycleMethods.componentDidMount(this.props, this);
+                return lifecycleMethods.componentDidMount(this.props, this);
             }
         }
 
-        componentWillReceiveProps (nextProps) {
+        componentWillReceiveProps (nextProps: Object) {
             if (lifecycleMethods.componentWillReceiveProps) {
-                lifecycleMethods.componentWillReceiveProps(this.props, nextProps, this);
+                return lifecycleMethods.componentWillReceiveProps(this.props, nextProps, this);
             }
         }
 
-        shouldComponentUpdate (nextProps) {
+        shouldComponentUpdate (nextProps: Object) {
             if (lifecycleMethods.shouldComponentUpdate) {
-                lifecycleMethods.shouldComponentUpdate(this.props, nextProps, this);
+                return lifecycleMethods.shouldComponentUpdate(this.props, nextProps, this);
             }
+
+            return true;
         }
 
-        componentWillUpdate (nextProps) {
+        componentWillUpdate (nextProps: Object) {
             if (lifecycleMethods.componentWillUpdate) {
-                lifecycleMethods.componentWillUpdate(this.props, nextProps, this);
+                return lifecycleMethods.componentWillUpdate(this.props, nextProps, this);
             }
         }
 
-        componentDidUpdate (previousProps) {
+        componentDidUpdate (previousProps: Object) {
             if (lifecycleMethods.componentDidUpdate) {
-                lifecycleMethods.componentDidUpdate(this.props, previousProps, this);
+                return lifecycleMethods.componentDidUpdate(this.props, previousProps, this);
             }
         }
 
         componentWillUnmount () {
             if (lifecycleMethods.componentWillUnmount) {
-                lifecycleMethods.componentWillUnmount(this.props, this);
+                return lifecycleMethods.componentWillUnmount(this.props, this);
             }
         }
 

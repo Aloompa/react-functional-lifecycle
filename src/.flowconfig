@@ -1,0 +1,11 @@
+[ignore]
+
+[include]
+../node_modules/react-addons-test-utils
+../node_modules/expect
+../node_modules/react
+
+[libs]
+flow
+
+[options]
