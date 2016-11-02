@@ -1,6 +1,6 @@
 // @flow
 
-import functional from './index';
+import functional, { componentWillMount, componentDidMount, componentWillReceiveProps, shouldComponentUpdate, componentWillUpdate, componentDidUpdate, componentWillUnmount  } from './index';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import React from 'react';
@@ -13,29 +13,114 @@ function TestComponent (props) {
     );
 }
 
-const FunctionalComponent = functional(TestComponent, {});
-
-function setup (props) {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<FunctionalComponent greeting={props.greeting} />);
-    const output = renderer.getRenderOutput();
-
-    return {
-        props,
-        output,
-        renderer
-    };
-}
-
 describe('React Functional Lifecycle', () => {
-    describe('When we override render', () => {
-        it('Should pass in the props', () => {
-            const { output } = setup({ greeting: 'Hello' });
-            const [ greeting ] = output.props.children;
+    describe('When we use it as a to compose render', () => {
 
-            expect(greeting).toBe('Hello');
+        it('Should call componentWillMount with props', (done) => {
+            const Output = componentWillMount(props => {
+                expect(props.greeting).toBe('Hi');
+                done();
+            })(TestComponent);
+
+            const output = new Output({
+                greeting: 'Hi'
+            });
+
+            output.componentWillMount();
         });
 
+        it('Should call componentDidMount with props', (done) => {
+            const Component = componentDidMount(props => {
+                expect(props.greeting).toBe('Yo');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Yo'
+            });
+
+            output.componentDidMount();
+        });
+
+        it('Should call componentWillReceiveProps with props and nextProps', (done) => {
+            const Component = componentWillReceiveProps((props, nextProps) => {
+                expect(props.greeting).toBe('Hiya');
+                expect(nextProps.greeting).toBe('Hiya Partner');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Hiya'
+            });
+
+            output.componentWillReceiveProps({
+                greeting: 'Hiya Partner'
+            });
+        });
+
+        it('Should call shouldComponentUpdate with props and nextProps', (done) => {
+            const Component = shouldComponentUpdate((props, nextProps) => {
+                expect(props.greeting).toBe('Howdy');
+                expect(nextProps.greeting).toBe('Howdy Partner');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Howdy'
+            });
+
+            output.shouldComponentUpdate({
+                greeting: 'Howdy Partner'
+            });
+        });
+
+        it('Should call componentWillUpdate with props and nextProps', (done) => {
+            const Component = componentWillUpdate((props, nextProps) => {
+                expect(props.greeting).toBe('Greetings');
+                expect(nextProps.greeting).toBe('More Greetings');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Greetings'
+            });
+
+            output.componentWillUpdate({
+                greeting: 'More Greetings'
+            });
+        });
+
+        it('Should call componentDidUpdate with props and previousProps', (done) => {
+            const Component = componentDidUpdate((props, previousProps) => {
+                expect(props.greeting).toBe('Wassup');
+                expect(previousProps.greeting).toBe('Waaasup');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Wassup'
+            });
+
+            output.componentDidUpdate({
+                greeting: 'Waaasup'
+            });
+        });
+
+        it('Should call componentWillUnmount with props', (done) => {
+            const Component = componentWillUnmount(props => {
+                expect(props.greeting).toBe('Bye');
+                done();
+            })(TestComponent);
+
+            const output = new Component({
+                greeting: 'Bye'
+            });
+
+            output.componentWillUnmount();
+        });
+    });
+
+    describe('When we use it as an object on render', () => {
         it('Should call componentWillMount with props', (done) => {
             const Component = functional(TestComponent, {
                 componentWillMount: (props) => {

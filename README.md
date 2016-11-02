@@ -34,6 +34,40 @@ export default functional(YourReactComponent, {
 });
 ```
 
+Additionally, all of the React Lifecycle methods are available as stand-alone methods that can be composed around your render.
+
+```javascript
+import { shouldComponentUpdate } from 'react-functional-lifecycle';
+
+function YourReactComponent (props) {
+    return (
+        <div>Hello</div>
+    );
+}
+
+export default shouldComponentUpdate(
+    (props, nextProps) => props !== nextProps
+)(YourReactComponent);
+```
+
+The composed wrapper usage allows you to string multiple methods together. If you are using a utility library such as Lodash or Ramda, you can use `compose` like this:
+
+```javascript
+import { compose } from 'lodash';
+import { shouldComponentUpdate } from 'react-functional-lifecycle';
+
+function YourReactComponent (props) {
+    return (
+        <div>Hello</div>
+    );
+}
+
+export default compose(
+    shouldComponentUpdate((props, nextProps) => props !== nextProps),
+    componentWillUnmount(() => console.log('Bye!'))
+)(YourReactComponent);
+```
+
 The object can contain any of the following methods:
 
 - `componentWillMount(props, component)`
