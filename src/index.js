@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export const componentWillMount = (fn: Function) =>
+export const componentWillMount = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentWillMount extends React.Component {
             componentWillMount () {
@@ -14,7 +14,7 @@ export const componentWillMount = (fn: Function) =>
             }
         };
 
-export const componentDidMount = (fn: Function) =>
+export const componentDidMount = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentDidMount extends React.Component {
             componentDidMount () {
@@ -26,7 +26,7 @@ export const componentDidMount = (fn: Function) =>
             }
         };
 
-export const componentWillReceiveProps = (fn: Function) =>
+export const componentWillReceiveProps = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentWillReceiveProps extends React.Component {
             componentWillReceiveProps (nextProps: Object) {
@@ -38,7 +38,7 @@ export const componentWillReceiveProps = (fn: Function) =>
             }
         };
 
-export const shouldComponentUpdate = (fn: Function) =>
+export const shouldComponentUpdate = (fn: Function): Function =>
     (Component: Object) =>
         class ShouldComponentUpdate extends React.Component {
             shouldComponentUpdate (nextProps: Object) {
@@ -50,7 +50,7 @@ export const shouldComponentUpdate = (fn: Function) =>
             }
         };
 
-export const componentWillUpdate = (fn: Function) =>
+export const componentWillUpdate = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentWillUpdate extends React.Component {
             componentWillUpdate (nextProps: Object) {
@@ -62,7 +62,7 @@ export const componentWillUpdate = (fn: Function) =>
             }
         };
 
-export const componentDidUpdate = (fn: Function) =>
+export const componentDidUpdate = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentDidUpdate extends React.Component {
             componentDidUpdate (previousProps: Object) {
@@ -74,7 +74,7 @@ export const componentDidUpdate = (fn: Function) =>
             }
         };
 
-export const componentWillUnmount = (fn: Function) =>
+export const componentWillUnmount = (fn: Function): Function =>
     (Component: Object) =>
         class ComponentWillUnmount extends React.Component {
             componentWillUnmount () {
