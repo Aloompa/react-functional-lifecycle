@@ -1,6 +1,6 @@
 {
   "name": "react-functional-lifecycle",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Access lifecycle methods without a class or a component state",
   "main": "lib/index.js",
   "scripts": {
