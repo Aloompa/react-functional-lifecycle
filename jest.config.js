@@ -7,8 +7,7 @@ process.env.NODE_PATH +=
 
 module.exports = {
     roots: [
-        'src',
-        'util'
+        'src'
     ],
 
     testEnvironment: 'node',
