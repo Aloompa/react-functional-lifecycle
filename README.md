@@ -15,6 +15,14 @@ class MyComponent {
         console.log('See you later!', this.props);
     }
 
+    getSnapshotBeforeUpdate () {
+        return 'I am a snapshot!';
+    }
+
+    componentDidUpdate (prevProps, prevState, snapshot) {
+        console.log('Check out my snapshot: ', snapshot);
+    }
+
     render () {
         return (
             <SomeComponent {...this.props} />
@@ -32,6 +40,11 @@ const MyComponent = compose(
     componentDidMount(props => {
         console.log('I mounted with props:', props);
     }),
+    getSnapshotBeforeUpdate(() => (
+        'I am a snapshot!'
+    ), (props, prevProps, snapshot) => {
+        console.log('Check out my snapshot: ', snapshot);s
+    })
     componentWillUnmount(props => {
         console.log('See you later!', props);
     })
@@ -52,13 +65,13 @@ React Functional Lifecycle has a peerDependency of React 14 or greater. Otherwis
 
 ### Table of Contents
 
-- [componentWillMount(props, component)](#componentwillmount) *deprecated
+- [componentWillMount(props, component)](#componentwillmount) *deprecated in React 16.3*
 - [UNSAFE_componentWillMount(props, component)](#unsafe_componentwillmount)
 - [componentDidMount(props, component)](#componentdidmount)
-- [componentWillReceiveProps(props, nextProps, component)](#componentwillreceiveprops) *deprecated
+- [componentWillReceiveProps(props, nextProps, component)](#componentwillreceiveprops) *deprecated in React 16.3*
 - [UNSAFE_componentWillReceiveProps(props, nextProps, component)](#unsafe_componentwillreceiveprops)
 - [shouldComponentUpdate(props, nextProps, component)](#shouldcomponentupdate)
-- [componentWillUpdate(props, nextProps, component)](#componentwillupdate) *deprecated
+- [componentWillUpdate(props, nextProps, component)](#componentwillupdate) *deprecated in React 16.3*
 - [UNSAFE_componentWillUpdate(props, nextProps, component)](#unsafe_componentwillupdate)
 - [componentDidUpdate(props, previousProps, component)](#componentdidupdate)
 - [componentWillUnmount(props, component)](#componentwillunmount)
@@ -275,7 +288,7 @@ We encourage you to contribute to React Functional Lifecycle by submitting bug r
 
 React Functional Lifecycle is released under The MIT License (MIT)
 
-Copyright (c) [2015] [Aloompa LLC]
+Copyright (c) [2018] [Aloompa LLC]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions
 
