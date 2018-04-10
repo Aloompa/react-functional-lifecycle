@@ -1,6 +1,46 @@
 # React Functional Lifecycle
 
-This is a way to tap into the React lifecycle methods without writing classes. This is useful if you are using a Flux or Redux library to manage your state, but you still need to access lifecycle methods.
+Are you tired of using classes in React just to use the lifecycle methods? This library is designed to allow lifecycle methods to be exposed as composable functions.
+
+Previously:
+
+```javascript
+class MyComponent {
+
+    componentDidMount () {
+        console.log('I mounted with props:', this.props);
+    }
+
+    componentWillUnmount () {
+        console.log('See you later!', this.props);
+    }
+
+    render () {
+        return (
+            <SomeComponent {...this.props} />
+        );
+    }
+
+}
+```
+
+With React-Functional-LifeCycle:
+
+```javascript
+
+const MyComponent = compose(
+    componentDidMount(props => {
+        console.log('I mounted with props:', props);
+    }),
+    componentWillUnmount(props => {
+        console.log('See you later!', props);
+    })
+)(SomeComponent);
+```
+
+This is a way to tap into the React lifecycle methods without writing classes. This is useful if you are using [Recompose](https://github.com/acdlite/recompose/) or [Redux](redux.js.org) to manage your state, but you still need to access lifecycle methods.
+
+This library works with React web or native and allows access to all of the lifecycle methods you know and love.
 
 ## Installation
 
@@ -9,6 +49,8 @@ React Functional Lifecycle has a peerDependency of React 14 or greater. Otherwis
 `npm install react-functional-lifecycle --save`
 
 ## API
+
+### Table of Contents
 
 - [componentWillMount(props, component)](#componentwillmount) *deprecated
 - [UNSAFE_componentWillMount(props, component)](#unsafe_componentwillmount)
