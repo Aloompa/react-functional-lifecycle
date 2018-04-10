@@ -36,18 +36,26 @@ With React-Functional-LifeCycle:
 
 ```javascript
 
+const componentMount = props => {
+    console.log('I mounted with props:', props);
+};
+
+const getSnapshot = () => (
+    'I am a snapshot!'
+);
+
+const componentUpdate = (props, prevProps, snapshot) => {
+    console.log('Check out my snapshot: ', snapshot);
+};
+
+const componentUnmount = props => {
+    console.log('See you later!', props);
+};
+
 const MyComponent = compose(
-    componentDidMount(props => {
-        console.log('I mounted with props:', props);
-    }),
-    getSnapshotBeforeUpdate(() => (
-        'I am a snapshot!'
-    ), (props, prevProps, snapshot) => {
-        console.log('Check out my snapshot: ', snapshot);s
-    })
-    componentWillUnmount(props => {
-        console.log('See you later!', props);
-    })
+    componentDidMount(componentMount),
+    getSnapshotBeforeUpdate(getSnapshot, componentUpdate)
+    componentWillUnmount(componentUnmount)
 )(SomeComponent);
 ```
 
