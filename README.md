@@ -10,31 +10,7 @@ React Functional Lifecycle has a peerDependency of React 14 or greater. Otherwis
 
 ## API
 
-React Functional Lifecycle is a function that takes your functional component as the first argument and an object of your lifecycle methods as the second argument and returns a new component. For example:
-
-```javascript
-import functional from 'react-functional-lifecycle';
-
-function YourReactComponent (props) {
-    return (
-        <div>Hello</div>
-    );
-}
-
-export default functional(YourReactComponent, {
-
-    componentWillMount: (props) => {
-        // do something..
-    },
-
-    shouldComponentUpdate: (props, nextProps) => {
-        // do something...
-    }
-
-});
-```
-
-Additionally, all of the React Lifecycle methods are available as stand-alone methods that can be composed around your render.
+All of the React Lifecycle methods are available as stand-alone methods that can be composed around your render.
 
 ```javascript
 import { shouldComponentUpdate } from 'react-functional-lifecycle';
