@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": false,
+        "alwaysStrict": true,
+        "experimentalDecorators": false,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitOnError": false,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "preserveConstEnums": false,
+        "pretty": true,
+        "outDir": "./lib",
+        "rootDir": "./src",
+        "strictNullChecks": true,
+        "suppressExcessPropertyErrors": false,
+        "target": "es5",
+        "skipLibCheck": true,
+        "typeRoots": [
+            "./node_modules/@types",
+            "./typings"
+        ],
+        "lib": [
+            "dom",
+            "es2015",
+            "es5",
+            "es6"
+        ]
+    },
+    "include": [
+        "./src/**/*",
+        "!./src/**/__tests__/*"
+    ]
+}
